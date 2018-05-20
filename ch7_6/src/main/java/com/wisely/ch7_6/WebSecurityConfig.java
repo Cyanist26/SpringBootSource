@@ -19,7 +19,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .permitAll().and().logout().permitAll();
     }
     
-    //4
+    
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication().withUser("wyf").password("wyf").roles("USER").and().withUser("wisely").password("wisely").roles("USER");

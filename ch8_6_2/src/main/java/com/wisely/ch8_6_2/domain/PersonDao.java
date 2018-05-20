@@ -13,32 +13,32 @@ import javax.annotation.Resource;
 public class PersonDao {
     
     @Autowired
-    StringRedisTemplate stringRedisTemplate; //1
+    StringRedisTemplate stringRedisTemplate;
     
     @Resource(name = "stringRedisTemplate")
-    ValueOperations<String, String> valOpsStr; //3
+    ValueOperations<String, String> valOpsStr;
     
     
     @Autowired
-    RedisTemplate<Object, Object> redisTemplate; //2
+    RedisTemplate<Object, Object> redisTemplate;
     
     @Resource(name = "redisTemplate")
-    ValueOperations<Object, Object> valOps; //4
+    ValueOperations<Object, Object> valOps;
     
-    public void stringRedisTemplateDemo() { //5
+    public void stringRedisTemplateDemo() {
         valOpsStr.set("xx", "yy");
     }
     
     
-    public void save(Person person) { //6
+    public void save(Person person) {
         valOps.set(person.getId(), person);
     }
     
-    public String getString() {//7
+    public String getString() {
         return valOpsStr.get("xx");
     }
     
-    public Person getPerson() {//8
+    public Person getPerson() {
         return (Person) valOps.get("1");
     }
     

@@ -8,13 +8,13 @@ import org.springframework.context.annotation.Configuration;
 public class ConditionConifg {
     
     @Bean
-    @Conditional(WindowsCondition.class) //1
+    @Conditional(WindowsCondition.class)
     public ListService windowsListService() {
         return new WindowsListService();
     }
     
     @Bean
-    @Conditional(LinuxCondition.class) //2
+    @Conditional(LinuxCondition.class)
     public ListService linuxListService() {
         return new LinuxListService();
     }

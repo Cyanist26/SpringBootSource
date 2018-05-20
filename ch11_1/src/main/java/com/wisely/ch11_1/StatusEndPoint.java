@@ -7,8 +7,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
 
-@ConfigurationProperties(prefix = "endpoints.status", ignoreUnknownFields = false) //1
-public class StatusEndPoint extends AbstractEndpoint<String> implements ApplicationContextAware {//2
+@ConfigurationProperties(prefix = "endpoints.status", ignoreUnknownFields = false)
+public class StatusEndPoint extends AbstractEndpoint<String> implements ApplicationContextAware {
     
     ApplicationContext context;
     
@@ -17,7 +17,7 @@ public class StatusEndPoint extends AbstractEndpoint<String> implements Applicat
     }
     
     @Override
-    public String invoke() { //3
+    public String invoke() {
         StatusService statusService = context.getBean(StatusService.class);
         
         return "The Current Status  is :" + statusService.getStatus();

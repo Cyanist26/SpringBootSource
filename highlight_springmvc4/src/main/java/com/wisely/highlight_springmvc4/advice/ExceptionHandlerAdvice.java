@@ -9,23 +9,23 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-@ControllerAdvice //1
+@ControllerAdvice
 public class ExceptionHandlerAdvice {
     
-    @ExceptionHandler(value = Exception.class)//2
+    @ExceptionHandler(value = Exception.class)
     public ModelAndView exception(Exception exception, WebRequest request) {
         ModelAndView modelAndView = new ModelAndView("error");// error页面
         modelAndView.addObject("errorMessage", exception.getMessage());
         return modelAndView;
     }
     
-    @ModelAttribute //3
+    @ModelAttribute
     public void addAttributes(Model model) {
-        model.addAttribute("msg", "额外信息"); //3
+        model.addAttribute("msg", "额外信息");
     }
     
-    @InitBinder //4
+    @InitBinder
     public void initBinder(WebDataBinder webDataBinder) {
-        webDataBinder.setDisallowedFields("id"); //5
+        webDataBinder.setDisallowedFields("id");
     }
 }

@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 import java.util.Collection;
 import java.util.LinkedHashSet;
 
-@Document //1
+@Document
 public class Person {
     
     @Id

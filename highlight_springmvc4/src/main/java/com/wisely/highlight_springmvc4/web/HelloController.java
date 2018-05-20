@@ -2,10 +2,10 @@ package com.wisely.highlight_springmvc4.web;
 
 import org.springframework.stereotype.Controller;
 
-@Controller//1
+@Controller
 public class HelloController {
     
-    //	@RequestMapping("/index")//2
+    //	@RequestMapping("/index")
     //	public  String hello(){
     //
     //		return "index";

@@ -9,15 +9,15 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-@RunWith(SpringJUnit4ClassRunner.class) //1
-@ContextConfiguration(classes = {TestConfig.class}) //2
-@ActiveProfiles("prod") //3
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = {TestConfig.class})
+@ActiveProfiles("prod")
 public class DemoBeanIntegrationTests {
     
-    @Autowired //4
+    @Autowired
     private TestBean testBean;
     
-    @Test //5
+    @Test
     public void prodBeanShouldInject() {
         String expected = "from production profile";
         String actual = testBean.getContent();

@@ -8,18 +8,18 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration.Dynamic;
 
-public class WebInitializer implements WebApplicationInitializer {//1
+public class WebInitializer implements WebApplicationInitializer {
     
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
         AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
         ctx.register(MyMvcConfig.class);
-        ctx.setServletContext(servletContext); //2
-        
-        Dynamic servlet = servletContext.addServlet("dispatcher", new DispatcherServlet(ctx)); //3
+        ctx.setServletContext(servletContext);
+    
+        Dynamic servlet = servletContext.addServlet("dispatcher", new DispatcherServlet(ctx));
         servlet.addMapping("/");
         servlet.setLoadOnStartup(1);
-        servlet.setAsyncSupported(true);//1
+        servlet.setAsyncSupported(true);
         
     }
     

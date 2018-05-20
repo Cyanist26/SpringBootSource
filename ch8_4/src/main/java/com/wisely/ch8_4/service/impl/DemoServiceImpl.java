@@ -12,19 +12,19 @@ import org.springframework.transaction.annotation.Transactional;
 public class DemoServiceImpl implements DemoService {
     
     @Autowired
-    PersonRepository personRepository; //1
+    PersonRepository personRepository;
     
-    @Transactional(rollbackFor = {IllegalArgumentException.class}) //2
+    @Transactional(rollbackFor = {IllegalArgumentException.class})
     public Person savePersonWithRollBack(Person person) {
         Person p = personRepository.save(person);
         
         if(person.getName().equals("汪云飞")) {
-            throw new IllegalArgumentException("汪云飞已存在，数据将回滚"); //3
+            throw new IllegalArgumentException("汪云飞已存在，数据将回滚");
         }
         return p;
     }
     
-    @Transactional(noRollbackFor = {IllegalArgumentException.class}) //4
+    @Transactional(noRollbackFor = {IllegalArgumentException.class})
     public Person savePersonWithoutRollBack(Person person) {
         Person p = personRepository.save(person);
         

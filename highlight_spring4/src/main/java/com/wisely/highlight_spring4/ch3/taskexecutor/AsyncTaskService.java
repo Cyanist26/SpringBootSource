@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class AsyncTaskService {
     
-    @Async //1
+    @Async
     public void executeAsyncTask(Integer i) {
         System.out.println("ִ���첽����: " + i);
     }

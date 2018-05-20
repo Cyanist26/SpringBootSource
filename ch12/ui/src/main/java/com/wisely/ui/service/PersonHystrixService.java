@@ -14,7 +14,7 @@ public class PersonHystrixService {
     @Autowired
     PersonService personService;
     
-    @HystrixCommand(fallbackMethod = "fallbackSave") //1
+    @HystrixCommand(fallbackMethod = "fallbackSave")
     public List<Person> save(String name) {
         return personService.save(name);
     }

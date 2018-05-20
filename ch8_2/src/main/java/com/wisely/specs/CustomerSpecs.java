@@ -20,32 +20,32 @@ import static com.google.common.collect.Iterables.toArray;
 
 public class CustomerSpecs {
     
-    public static <T> Specification<T> byAuto(final EntityManager entityManager, final T example) { //1
+    public static <T> Specification<T> byAuto(final EntityManager entityManager, final T example) {
         
-        final Class<T> type = (Class<T>) example.getClass();//2
+        final Class<T> type = (Class<T>) example.getClass();
         
         return new Specification<T>() {
             
             @Override
             public Predicate toPredicate(Root<T> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
-                List<Predicate> predicates = new ArrayList<>(); //3
-                
-                EntityType<T> entity = entityManager.getMetamodel().entity(type);//4
-                
-                for(Attribute<T, ?> attr : entity.getDeclaredAttributes()) {//5
-                    Object attrValue = getValue(example, attr); //6
+                List<Predicate> predicates = new ArrayList<>();
+    
+                EntityType<T> entity = entityManager.getMetamodel().entity(type);
+    
+                for(Attribute<T, ?> attr : entity.getDeclaredAttributes()) {
+                    Object attrValue = getValue(example, attr);
                     if(attrValue != null) {
-                        if(attr.getJavaType() == String.class) { //7
-                            if(!StringUtils.isEmpty(attrValue)) { //8
-                                predicates.add(cb.like(root.get(attribute(entity, attr.getName(), String.class)), pattern((String) attrValue))); //9
+                        if(attr.getJavaType() == String.class) {
+                            if(!StringUtils.isEmpty(attrValue)) {
+                                predicates.add(cb.like(root.get(attribute(entity, attr.getName(), String.class)), pattern((String) attrValue)));
                             }
                         } else {
-                            predicates.add(cb.equal(root.get(attribute(entity, attr.getName(), attrValue.getClass())), attrValue)); //10
+                            predicates.add(cb.equal(root.get(attribute(entity, attr.getName(), attrValue.getClass())), attrValue));
                         }
                     }
                     
                 }
-                return predicates.isEmpty() ? cb.conjunction() : cb.and(toArray(predicates, Predicate.class));//11
+                return predicates.isEmpty() ? cb.conjunction() : cb.and(toArray(predicates, Predicate.class));
             }
             
             /**

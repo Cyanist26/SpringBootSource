@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class Ch623Application {
     
     @Autowired
-    private AuthorSettings authorSettings; //1
+    private AuthorSettings authorSettings;
     
     @RequestMapping("/")
     public String index() {

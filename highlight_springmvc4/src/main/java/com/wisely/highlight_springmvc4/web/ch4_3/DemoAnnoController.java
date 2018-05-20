@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller // 1
-@RequestMapping("/anno") //2
+@RequestMapping("/anno")
 public class DemoAnnoController {
     
     @RequestMapping(produces = "text/plain;charset=UTF-8")    // 3
@@ -20,12 +20,12 @@ public class DemoAnnoController {
     
     @RequestMapping(value = "/pathvar/{str}", produces = "text/plain;charset=UTF-8")// 5
     public @ResponseBody
-    String demoPathVar(@PathVariable String str, //3
+    String demoPathVar(@PathVariable String str,
                        HttpServletRequest request) {
         return "url:" + request.getRequestURL() + " can access,str: " + str;
     }
     
-    @RequestMapping(value = "/requestParam", produces = "text/plain;charset=UTF-8") //6
+    @RequestMapping(value = "/requestParam", produces = "text/plain;charset=UTF-8")
     public @ResponseBody
     String passRequestParam(Long id, HttpServletRequest request) {
         
@@ -33,8 +33,8 @@ public class DemoAnnoController {
         
     }
     
-    @RequestMapping(value = "/obj", produces = "application/json;charset=UTF-8")//7
-    @ResponseBody //8
+    @RequestMapping(value = "/obj", produces = "application/json;charset=UTF-8")
+    @ResponseBody
     public String passObj(DemoObj obj, HttpServletRequest request) {
         
         return "url:" + request.getRequestURL() + " can access, obj id: " + obj.getId() + " obj name:" + obj.getName();
@@ -44,7 +44,7 @@ public class DemoAnnoController {
     @RequestMapping(value = {
             "/name1",
             "/name2"
-    }, produces = "text/plain;charset=UTF-8")//9
+    }, produces = "text/plain;charset=UTF-8")
     public @ResponseBody
     String remove(HttpServletRequest request) {
         

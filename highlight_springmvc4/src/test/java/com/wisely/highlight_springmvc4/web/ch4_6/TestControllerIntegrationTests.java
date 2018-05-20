@@ -21,43 +21,41 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {MyMvcConfig.class})
-@WebAppConfiguration("src/main/resources") //1
+@WebAppConfiguration("src/main/resources")
 public class TestControllerIntegrationTests {
     
-    private MockMvc mockMvc; //2
+    private MockMvc mockMvc;
     
     @Autowired
-    private DemoService demoService;//3
+    private DemoService demoService;
     
     @Autowired
-    WebApplicationContext wac; //4
+    WebApplicationContext wac;
     
     @Autowired
-    MockHttpSession session; //5
+    MockHttpSession session;
     
     @Autowired
-    MockHttpServletRequest request; //6
+    MockHttpServletRequest request;
     
-    @Before //7
+    @Before
     public void setup() {
-        mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build(); //2
+        mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
     }
     
     @Test
     public void testNormalController() throws Exception {
-        mockMvc.perform(get("/normal")) //8
-               .andExpect(status().isOk())//9
-               .andExpect(view().name("page"))//10
-               .andExpect(forwardedUrl("/WEB-INF/classes/views/page.jsp"))//11
-               .andExpect(model().attribute("msg", demoService.saySomething()));//12
+        mockMvc.perform(get("/normal"))
+               .andExpect(status().isOk())
+               .andExpect(view().name("page"))
+               .andExpect(forwardedUrl("/WEB-INF/classes/views/page.jsp"))
+               .andExpect(model().attribute("msg", demoService.saySomething()));
         
     }
     
     @Test
     public void testRestController() throws Exception {
-        mockMvc.perform(get("/testRest")) //13
-               .andExpect(status().isOk()).andExpect(content().contentType("text/plain;charset=UTF-8"))//14
-               .andExpect(content().string(demoService.saySomething()));//15
+        mockMvc.perform(get("/testRest")).andExpect(status().isOk()).andExpect(content().contentType("text/plain;charset=UTF-8")).andExpect(content().string(demoService.saySomething()));
     }
     
 }

@@ -11,11 +11,11 @@ import org.springframework.web.context.request.async.DeferredResult;
 public class AysncController {
     
     @Autowired
-    PushService pushService; //1
+    PushService pushService;
     
     @RequestMapping("/defer")
     @ResponseBody
-    public DeferredResult<String> deferredCall() { //2
+    public DeferredResult<String> deferredCall() {
         return pushService.getAsyncUpdate();
     }
     

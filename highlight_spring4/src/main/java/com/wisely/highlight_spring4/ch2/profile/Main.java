@@ -6,10 +6,10 @@ public class Main {
     
     public static void main(String[] args) {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
-        
-        context.getEnvironment().setActiveProfiles("dev"); //1
-        context.register(ProfileConfig.class);//2
-        context.refresh(); //3
+    
+        context.getEnvironment().setActiveProfiles("dev");
+        context.register(ProfileConfig.class);
+        context.refresh();
         
         DemoBean demoBean = context.getBean(DemoBean.class);
         

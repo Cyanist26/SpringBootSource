@@ -21,11 +21,11 @@ public class WsController {
     }
     
     @Autowired
-    private SimpMessagingTemplate messagingTemplate;//1
+    private SimpMessagingTemplate messagingTemplate;
     
     @MessageMapping("/chat")
-    public void handleChat(Principal principal, String msg) { //2
-        if(principal.getName().equals("wyf")) {//3
+    public void handleChat(Principal principal, String msg) {
+        if(principal.getName().equals("wyf")) {
             messagingTemplate.convertAndSendToUser("wisely", "/queue/notifications", principal.getName() + "-send:" + msg);
         } else {
             messagingTemplate.convertAndSendToUser("wyf", "/queue/notifications", principal.getName() + "-send:" + msg);

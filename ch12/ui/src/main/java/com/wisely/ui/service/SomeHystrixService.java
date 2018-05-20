@@ -9,9 +9,9 @@ import org.springframework.web.client.RestTemplate;
 public class SomeHystrixService {
     
     @Autowired
-    RestTemplate restTemplate; //1
+    RestTemplate restTemplate;
     
-    @HystrixCommand(fallbackMethod = "fallbackSome") //2
+    @HystrixCommand(fallbackMethod = "fallbackSome")
     public String getSome() {
         return restTemplate.getForObject("http://some/getsome", String.class);
     }

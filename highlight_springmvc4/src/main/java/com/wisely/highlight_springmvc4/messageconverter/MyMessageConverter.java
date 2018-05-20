@@ -12,10 +12,10 @@ import org.springframework.util.StreamUtils;
 import java.io.IOException;
 import java.nio.charset.Charset;
 
-public class MyMessageConverter extends AbstractHttpMessageConverter<DemoObj> {//1
+public class MyMessageConverter extends AbstractHttpMessageConverter<DemoObj> {
     
     public MyMessageConverter() {
-        super(new MediaType("application", "x-wisely", Charset.forName("UTF-8")));//2
+        super(new MediaType("application", "x-wisely", Charset.forName("UTF-8")));
     }
     
     /**

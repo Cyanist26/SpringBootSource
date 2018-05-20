@@ -22,9 +22,9 @@ import org.springframework.web.context.WebApplicationContext;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = Ch104Application.class) //1
+@SpringApplicationConfiguration(classes = Ch104Application.class)
 @WebAppConfiguration
-@Transactional //2
+@Transactional
 public class Ch104ApplicationTests {
     
     @Autowired
@@ -37,20 +37,20 @@ public class Ch104ApplicationTests {
     
     String expectedJson;
     
-    @Before //3
+    @Before
     public void setUp() throws JsonProcessingException {
         Person p1 = new Person("wyf");
         Person p2 = new Person("wisely");
         personRepository.save(p1);
         personRepository.save(p2);
         
-        expectedJson = Obj2Json(personRepository.findAll()); //4
+        expectedJson = Obj2Json(personRepository.findAll());
         mvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
         
         
     }
     
-    protected String Obj2Json(Object obj) throws JsonProcessingException {//5
+    protected String Obj2Json(Object obj) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
         return mapper.writeValueAsString(obj);
     }
@@ -58,12 +58,12 @@ public class Ch104ApplicationTests {
     @Test
     public void testPersonController() throws Exception {
         String uri = "/person";
-        MvcResult result = mvc.perform(MockMvcRequestBuilders.get(uri).accept(MediaType.APPLICATION_JSON)).andReturn(); //6
-        int status = result.getResponse().getStatus(); //7
-        String content = result.getResponse().getContentAsString(); //8
-        
-        Assert.assertEquals("错误，正确的返回值为200", 200, status); //9
-        Assert.assertEquals("错误，返回值和预期返回值不一致", expectedJson, content); //10
+        MvcResult result = mvc.perform(MockMvcRequestBuilders.get(uri).accept(MediaType.APPLICATION_JSON)).andReturn();
+        int status = result.getResponse().getStatus();
+        String content = result.getResponse().getContentAsString();
+    
+        Assert.assertEquals("错误，正确的返回值为200", 200, status);
+        Assert.assertEquals("错误，返回值和预期返回值不一致", expectedJson, content);
     }
     
 }

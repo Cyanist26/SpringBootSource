@@ -7,10 +7,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.jms.core.JmsTemplate;
 
 @SpringBootApplication
-public class Ch934Application implements CommandLineRunner { //1
+public class Ch934Application implements CommandLineRunner {
     
     @Autowired
-    JmsTemplate jmsTemplate; //2
+    JmsTemplate jmsTemplate;
     
     public static void main(String[] args) {
         SpringApplication.run(Ch934Application.class, args);
@@ -19,7 +19,7 @@ public class Ch934Application implements CommandLineRunner { //1
     
     @Override
     public void run(String... args) throws Exception {
-        jmsTemplate.send("my-destination", new Msg()); //3
+        jmsTemplate.send("my-destination", new Msg());
         
     }
 }

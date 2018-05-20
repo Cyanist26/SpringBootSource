@@ -13,13 +13,13 @@ public class MyController {
     DemoService demoService;
     
     @RequestMapping("/rollback")
-    public Person rollback(Person person) { //1
+    public Person rollback(Person person) {
         
         return demoService.savePersonWithRollBack(person);
     }
     
     @RequestMapping("/norollback")
-    public Person noRollback(Person person) {//2
+    public Person noRollback(Person person) {
         
         return demoService.savePersonWithoutRollBack(person);
         

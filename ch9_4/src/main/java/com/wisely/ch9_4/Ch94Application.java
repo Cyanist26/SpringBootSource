@@ -28,8 +28,8 @@ public class Ch94Application {
         SpringApplication.run(Ch94Application.class, args);
     }
     
-    @Value("https://spring.io/blog.atom") // 1
-            Resource resource;
+    @Value("https://spring.io/blog.atom")
+    Resource resource;
     
     @Bean(name = PollerMetadata.DEFAULT_POLLER)
     public PollerMetadata poller() { // 2
@@ -37,16 +37,14 @@ public class Ch94Application {
     }
     
     @Bean
-    public FeedEntryMessageSource feedMessageSource() throws IOException { //3
+    public FeedEntryMessageSource feedMessageSource() throws IOException {
         FeedEntryMessageSource messageSource = new FeedEntryMessageSource(resource.getURL(), "news");
         return messageSource;
     }
     
     @Bean
     public IntegrationFlow myFlow() throws IOException {
-        return IntegrationFlows.from(feedMessageSource()) //4
-                .<SyndEntry, String>route(payload -> payload.getCategories().get(0).getName(),//5
-                        mapping -> mapping.channelMapping("releases", "releasesChannel") //6
+        return IntegrationFlows.from(feedMessageSource()).<SyndEntry, String>route(payload -> payload.getCategories().get(0).getName(), mapping -> mapping.channelMapping("releases", "releasesChannel")
                                           .channelMapping("engineering", "engineeringChannel").channelMapping("news", "newsChannel"))
                 
                 .get(); // 7
@@ -54,12 +52,8 @@ public class Ch94Application {
     
     @Bean
     public IntegrationFlow releasesFlow() {
-        return IntegrationFlows.from(MessageChannels.queue("releasesChannel", 10)) //1
-                .<SyndEntry, String>transform(payload -> "《" + payload.getTitle() + "》 " + payload.getLink() + getProperty("line.separator")) //2
-                                                                                                                                              .handle(Files.outboundAdapter(new File("e:/springblog")) //3
-                                                                                                                                                           .fileExistsMode(FileExistsMode.APPEND) //4
-                                                                                                                                                           .charset("UTF-8") //5
-                                                                                                                                                           .fileNameGenerator(message -> "releases.txt") //6
+        return IntegrationFlows.from(MessageChannels.queue("releasesChannel", 10)).<SyndEntry, String>transform(payload -> "《" + payload.getTitle() + "》 " + payload.getLink() + getProperty("line.separator"))
+                .handle(Files.outboundAdapter(new File("e:/springblog")).fileExistsMode(FileExistsMode.APPEND).charset("UTF-8").fileNameGenerator(message -> "releases.txt")
                                                                                                                                                            .get()).get();
     }
     
@@ -73,9 +67,9 @@ public class Ch94Application {
     @Bean
     public IntegrationFlow newsFlow() {
         return IntegrationFlows.from(MessageChannels.queue("newsChannel", 10)).<SyndEntry, String>transform(payload -> "《" + payload.getTitle() + "》 " + payload.getLink() + getProperty("line.separator"))
-                .enrichHeaders( //1
+                .enrichHeaders(
                         Mail.headers().subject("来自Spring的新闻").to("wisely-man@126.com").from("wisely-man@126.com"))
-                .handle(Mail.outboundAdapter("smtp.126.com") //2
+                .handle(Mail.outboundAdapter("smtp.126.com")
                             .port(25).protocol("smtp").credentials("wisely-man@126.com", "******").javaMailProperties(p -> p.put("mail.debug", "false")), e -> e.id("smtpOut"))
                 .get();
     }

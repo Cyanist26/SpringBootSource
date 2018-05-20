@@ -12,10 +12,10 @@ import java.util.concurrent.Executor;
 @Configuration
 @ComponentScan("com.wisely.highlight_spring4.ch3.taskexecutor")
 @EnableAsync //1 
-public class TaskExecutorConfig implements AsyncConfigurer {//2
+public class TaskExecutorConfig implements AsyncConfigurer {
     
     @Override
-    public Executor getAsyncExecutor() {//2
+    public Executor getAsyncExecutor() {
         ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
         taskExecutor.setCorePoolSize(5);
         taskExecutor.setMaxPoolSize(10);

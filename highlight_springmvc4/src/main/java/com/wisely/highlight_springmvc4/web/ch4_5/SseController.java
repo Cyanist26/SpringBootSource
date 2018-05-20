@@ -9,7 +9,7 @@ import java.util.Random;
 @Controller
 public class SseController {
     
-    @RequestMapping(value = "/push", produces = "text/event-stream") //1
+    @RequestMapping(value = "/push", produces = "text/event-stream")
     public @ResponseBody
     String push() {
         Random r = new Random();

@@ -9,24 +9,22 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 @Configuration
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {//1
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     
     @Bean
-    UserDetailsService customUserService() { //2
+    UserDetailsService customUserService() {
         return new CustomUserService();
     }
     
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(customUserService()); //3
+        auth.userDetailsService(customUserService());
         
     }
     
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().anyRequest().authenticated() //4
-            .and().formLogin().loginPage("/login").failureUrl("/login?error").permitAll() //5
-            .and().logout().permitAll(); //6
+        http.authorizeRequests().anyRequest().authenticated().and().formLogin().loginPage("/login").failureUrl("/login?error").permitAll().and().logout().permitAll();
         
         
     }

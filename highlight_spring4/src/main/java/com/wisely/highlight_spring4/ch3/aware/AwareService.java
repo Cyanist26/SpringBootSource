@@ -10,19 +10,19 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 
 @Service
-public class AwareService implements BeanNameAware, ResourceLoaderAware {//1
+public class AwareService implements BeanNameAware, ResourceLoaderAware {
     
     private String beanName;
     
     private ResourceLoader loader;
     
     @Override
-    public void setResourceLoader(ResourceLoader resourceLoader) {//2
+    public void setResourceLoader(ResourceLoader resourceLoader) {
         this.loader = resourceLoader;
     }
     
     @Override
-    public void setBeanName(String name) {//3
+    public void setBeanName(String name) {
         this.beanName = name;
     }
     

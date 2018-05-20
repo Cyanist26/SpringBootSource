@@ -10,7 +10,7 @@ import java.util.Collection;
 import java.util.List;
 
 @Entity
-public class SysUser implements UserDetails { //1
+public class SysUser implements UserDetails {
     
     private static final long serialVersionUID = 1L;
     
@@ -27,7 +27,7 @@ public class SysUser implements UserDetails { //1
     
     
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() { //2
+    public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> auths = new ArrayList<GrantedAuthority>();
         List<SysRole> roles = this.getRoles();
         for(SysRole role : roles) {

@@ -8,10 +8,10 @@ import java.lang.annotation.*;
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-@Configuration //1
-@ComponentScan //2
+@Configuration
+@ComponentScan
 public @interface WiselyConfiguration {
     
-    String[] value() default {}; //3
+    String[] value() default {};
     
 }

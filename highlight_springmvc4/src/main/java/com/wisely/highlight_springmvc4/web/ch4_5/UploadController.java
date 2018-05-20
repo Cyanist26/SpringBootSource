@@ -15,10 +15,10 @@ public class UploadController {
     
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     public @ResponseBody
-    String upload(MultipartFile file) {//1
+    String upload(MultipartFile file) {
         
         try {
-            FileUtils.writeByteArrayToFile(new File("e:/upload/" + file.getOriginalFilename()), file.getBytes()); //2
+            FileUtils.writeByteArrayToFile(new File("e:/upload/" + file.getOriginalFilename()), file.getBytes());
             return "ok";
         } catch(IOException e) {
             e.printStackTrace();

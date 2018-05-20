@@ -6,7 +6,7 @@ import org.springframework.boot.actuate.health.HealthIndicator;
 import org.springframework.stereotype.Component;
 
 @Component
-public class StatusHealth implements HealthIndicator {//1
+public class StatusHealth implements HealthIndicator {
     
     @Autowired
     StatusService statusService;
@@ -15,9 +15,9 @@ public class StatusHealth implements HealthIndicator {//1
     public Health health() {
         String status = statusService.getStatus();
         if(status == null || !status.equals("running")) {
-            return Health.down().withDetail("Error", "Not Running").build(); //2
+            return Health.down().withDetail("Error", "Not Running").build();
         }
-        return Health.up().build(); //3
+        return Health.up().build();
     }
     
 }

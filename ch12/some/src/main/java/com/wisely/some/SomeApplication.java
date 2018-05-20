@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class SomeApplication {
     
-    @Value("${my.message}") //1
+    @Value("${my.message}")
     private String message;
     
     @RequestMapping(value = "/getsome")

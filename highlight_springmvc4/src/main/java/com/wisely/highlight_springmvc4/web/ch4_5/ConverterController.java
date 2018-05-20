@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class ConverterController {
     
-    @RequestMapping(value = "/convert", produces = {"application/x-wisely"}) //1
+    @RequestMapping(value = "/convert", produces = {"application/x-wisely"})
     public @ResponseBody
     DemoObj convert(@RequestBody DemoObj demoObj) {
         

@@ -14,14 +14,14 @@ public class CsvBeanValidator<T> implements Validator<T>, InitializingBean {
     private javax.validation.Validator validator;
     
     @Override
-    public void afterPropertiesSet() throws Exception { //1
+    public void afterPropertiesSet() throws Exception {
         ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory();
         validator = validatorFactory.usingContext().getValidator();
     }
     
     @Override
     public void validate(T value) throws ValidationException {
-        Set<ConstraintViolation<T>> constraintViolations = validator.validate(value); //2
+        Set<ConstraintViolation<T>> constraintViolations = validator.validate(value);
         if(constraintViolations.size() > 0) {
             
             StringBuilder message = new StringBuilder();

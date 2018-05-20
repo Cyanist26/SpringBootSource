@@ -36,9 +36,9 @@ public class TriggerBatchConfig {
     @Bean
     @StepScope
     public FlatFileItemReader<Person> reader(@Value("#{jobParameters['input.file.name']}") String pathToFile) throws Exception {
-        FlatFileItemReader<Person> reader = new FlatFileItemReader<Person>(); //1
-        reader.setResource(new ClassPathResource(pathToFile)); //2
-        reader.setLineMapper(new DefaultLineMapper<Person>() {{ //3
+        FlatFileItemReader<Person> reader = new FlatFileItemReader<Person>();
+        reader.setResource(new ClassPathResource(pathToFile));
+        reader.setLineMapper(new DefaultLineMapper<Person>() {{
             setLineTokenizer(new DelimitedLineTokenizer() {{
                 setNames(new String[] {
                         "name",
@@ -57,18 +57,18 @@ public class TriggerBatchConfig {
     
     @Bean
     public ItemProcessor<Person, Person> processor() {
-        CsvItemProcessor processor = new CsvItemProcessor(); //1
-        processor.setValidator(csvBeanValidator()); //2
+        CsvItemProcessor processor = new CsvItemProcessor();
+        processor.setValidator(csvBeanValidator());
         return processor;
     }
     
     
     @Bean
-    public ItemWriter<Person> writer(DataSource dataSource) {//1
-        JdbcBatchItemWriter<Person> writer = new JdbcBatchItemWriter<Person>(); //2
+    public ItemWriter<Person> writer(DataSource dataSource) {
+        JdbcBatchItemWriter<Person> writer = new JdbcBatchItemWriter<Person>();
         writer.setItemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<Person>());
         String sql = "insert into person " + "(id,name,age,nation,address) " + "values(hibernate_sequence.nextval, :name, :age, :nation,:address)";
-        writer.setSql(sql); //3
+        writer.setSql(sql);
         writer.setDataSource(dataSource);
         return writer;
     }
@@ -91,17 +91,13 @@ public class TriggerBatchConfig {
     
     @Bean
     public Job importJob(JobBuilderFactory jobs, Step s1) {
-        return jobs.get("importJob").incrementer(new RunIdIncrementer()).flow(s1) //1
-                   .end().listener(csvJobListener()) //2
+        return jobs.get("importJob").incrementer(new RunIdIncrementer()).flow(s1).end().listener(csvJobListener())
                    .build();
     }
     
     @Bean
     public Step step1(StepBuilderFactory stepBuilderFactory, ItemReader<Person> reader, ItemWriter<Person> writer, ItemProcessor<Person, Person> processor) {
-        return stepBuilderFactory.get("step1").<Person, Person>chunk(65000) //1
-                                                                            .reader(reader) //2
-                                                                            .processor(processor) //3
-                                                                            .writer(writer) //4
+        return stepBuilderFactory.get("step1").<Person, Person>chunk(65000).reader(reader).processor(processor).writer(writer)
                                                                             .build();
     }
     

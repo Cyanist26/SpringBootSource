@@ -4,10 +4,12 @@
     <groupId>com.wisely</groupId>
     <artifactId>highlight_spring4</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+
     <properties>
         <java.version>1.7</java.version>
         <spring-framework.version>4.1.5.RELEASE</spring-framework.version>
     </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework</groupId>
@@ -26,6 +28,7 @@
             <artifactId>aspectjrt</artifactId>
             <version>1.8.6</version>
         </dependency>
+
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>

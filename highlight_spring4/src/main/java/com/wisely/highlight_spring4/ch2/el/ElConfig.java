@@ -13,7 +13,7 @@ import org.springframework.core.io.Resource;
 
 @Configuration
 @ComponentScan("com.wisely.highlight_spring4.ch2.el")
-@PropertySource("classpath:com/wisely/highlight_spring4/ch2/el/test.properties")
+@PropertySource("classpath:test.properties")
 public class ElConfig {
     
     @Value("I Love You!")
@@ -28,7 +28,7 @@ public class ElConfig {
     @Value("#{demoService.another}")
     private String fromAnother;
     
-    @Value("classpath:com/wisely/highlight_spring4/ch2/el/test.txt")
+    @Value("classpath:test.txt")
     private Resource testFile;
     
     @Value("http://www.baidu.com")

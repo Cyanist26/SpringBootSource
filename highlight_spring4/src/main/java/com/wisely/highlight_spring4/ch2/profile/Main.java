@@ -14,6 +14,17 @@ public class Main {
         DemoBean demoBean = context.getBean(DemoBean.class);
         
         System.out.println(demoBean.getContent());
+    
+        context.close();
+    
+        context = new AnnotationConfigApplicationContext();
+        context.getEnvironment().setActiveProfiles("prod");
+        context.register(ProfileConfig.class);
+        context.refresh();
+    
+        demoBean = context.getBean(DemoBean.class);
+    
+        System.out.println(demoBean.getContent());
         
         context.close();
     }

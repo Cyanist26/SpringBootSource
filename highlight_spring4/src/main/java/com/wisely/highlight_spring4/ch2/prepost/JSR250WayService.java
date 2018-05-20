@@ -12,7 +12,7 @@ public class JSR250WayService {
     
     public JSR250WayService() {
         super();
-        System.out.println("��ʼ�����캯��-JSR250WayService");
+        System.out.println("初始化构造函数 - JSR250WayService");
     }
     
     @PreDestroy

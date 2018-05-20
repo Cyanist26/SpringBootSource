@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class DemoService {
     
-    @Value("�����������")
+    @Value("其他类的属性")
     private String another;
     
     public String getAnother() {

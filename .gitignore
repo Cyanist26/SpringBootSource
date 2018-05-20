@@ -2,4 +2,5 @@
 *.class
 .idea
 out/
+target/
 classes

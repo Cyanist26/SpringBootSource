@@ -11,7 +11,7 @@ import java.util.concurrent.Executor;
 
 @Configuration
 @ComponentScan("com.wisely.highlight_spring4.ch3.taskexecutor")
-@EnableAsync //1 
+@EnableAsync
 public class TaskExecutorConfig implements AsyncConfigurer {
     
     @Override

@@ -16,10 +16,10 @@ import org.springframework.web.servlet.view.JstlView;
 import java.util.List;
 
 @Configuration
-@EnableWebMvc// 1
+@EnableWebMvc
 @EnableScheduling
 @ComponentScan("com.wisely.highlight_springmvc4")
-public class MyMvcConfig extends WebMvcConfigurerAdapter {// 2
+public class MyMvcConfig extends WebMvcConfigurerAdapter {
     
     @Bean
     public InternalResourceViewResolver viewResolver() {
@@ -32,13 +32,13 @@ public class MyMvcConfig extends WebMvcConfigurerAdapter {// 2
     
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        
-        registry.addResourceHandler("/assets/**").addResourceLocations("classpath:/assets/");// 3
+    
+        registry.addResourceHandler("/assets/**").addResourceLocations("classpath:/assets/");
         
     }
     
     @Bean
-    // 1
+
     public DemoInterceptor demoInterceptor() {
         return new DemoInterceptor();
     }

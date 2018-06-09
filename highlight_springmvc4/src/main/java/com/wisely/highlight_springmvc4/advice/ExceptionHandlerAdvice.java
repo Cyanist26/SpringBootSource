@@ -1,5 +1,7 @@
 package com.wisely.highlight_springmvc4.advice;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -12,10 +14,13 @@ import org.springframework.web.servlet.ModelAndView;
 @ControllerAdvice
 public class ExceptionHandlerAdvice {
     
+    private Logger logger = LoggerFactory.getLogger(getClass());
+    
     @ExceptionHandler(value = Exception.class)
     public ModelAndView exception(Exception exception, WebRequest request) {
-        ModelAndView modelAndView = new ModelAndView("error");// error页面
+        ModelAndView modelAndView = new ModelAndView("error");
         modelAndView.addObject("errorMessage", exception.getMessage());
+        logger.error(exception.getMessage());
         return modelAndView;
     }
     

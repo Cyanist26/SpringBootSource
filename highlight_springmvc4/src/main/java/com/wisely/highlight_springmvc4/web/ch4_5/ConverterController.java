@@ -12,9 +12,7 @@ public class ConverterController {
     @RequestMapping(value = "/convert", produces = {"application/x-wisely"})
     public @ResponseBody
     DemoObj convert(@RequestBody DemoObj demoObj) {
-        
         return demoObj;
-        
     }
     
 }

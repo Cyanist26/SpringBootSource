@@ -10,7 +10,7 @@ public class PushService {
     private DeferredResult<String> deferredResult;
     
     public DeferredResult<String> getAsyncUpdate() {
-        deferredResult = new DeferredResult<String>();
+        deferredResult = new DeferredResult<>();
         return deferredResult;
     }
     

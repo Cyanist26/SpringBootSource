@@ -12,17 +12,16 @@
 
 
 <div id="msgFrompPush"></div>
-<script type="text/javascript" src="<c:url value="assets/js/jquery.js" />"></script>
+<script type="text/javascript" src="<c:url value="/assets/js/jquery.js" />"></script>
 <script type="text/javascript">
 
 
-    if (!!window.EventSource) { //1
+    if (!!window.EventSource) {
         var source = new EventSource('push');
         s = '';
-        source.addEventListener('message', function (e) {//2
+        source.addEventListener('message', function (e) {
             s += e.data + "<br/>";
             $("#msgFrompPush").html(s);
-
         });
 
         source.addEventListener('open', function (e) {

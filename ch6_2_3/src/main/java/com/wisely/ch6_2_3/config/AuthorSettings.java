@@ -4,7 +4,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 @Component
-@ConfigurationProperties(prefix = "author") //1 
+@ConfigurationProperties(prefix = "author")
 public class AuthorSettings {
     
     private String name;
